@@ -10,4 +10,6 @@ Setup:
 brew bundle
 ```
 
+Then open `StonksPro.xcodeproj` in Xcode 15+ and run the app.
+
 Obtain a free Polygon.io API key from https://polygon.io/ (note: free API key is limited to 5 API calls per minute, but pricing plans are available for higher rate limits).
