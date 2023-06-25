@@ -54,8 +54,11 @@ struct StonksListView: View {
 
     @State var showImmersiveChart = false
 
-    @Environment(\.openImmersiveSpace) var openImmersiveSpace
-    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+//    @Environment(\.openImmersiveSpace) var openImmersiveSpace
+//    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+
+        @Environment(\.openWindow) var openWindow
+        @Environment(\.dismissWindow) var dismissWindow
 
     func fetchCryptoAssets() async {
         isLoading = true
@@ -130,9 +133,9 @@ struct StonksListView: View {
         }.onChange(of: showImmersiveChart) { _, newValue in
             Task {
                 if newValue {
-                    await openImmersiveSpace(id: "ImmersiveChart")
+                    await openWindow(id: "ImmersiveChart")
                 } else {
-                    await dismissImmersiveSpace()
+                    await dismissWindow(id: "ImmersiveChart")
                 }
             }
         }

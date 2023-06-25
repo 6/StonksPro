@@ -25,9 +25,8 @@ struct StonksProApp: App {
                     }
             }
         }
-
-        ImmersiveSpace(id: "ImmersiveChart") {
-            ImmersiveView()
-        }.immersionStyle(selection: $selectedImmersionStyle, in: .mixed)
+        WindowGroup(id:"ImmersiveChart") {
+                ImmersiveView()
+        }
     }
 }
