@@ -39,7 +39,7 @@ func textColorForValue(value: Float) -> Color {
     if value.roundToDecimal(maxDecimalsForPercent) > 0 {
         return Color.green
     } else if value.roundToDecimal(2) < 0 {
-        return Color.red
+        return Color(red: 1.0, green: 0.5, blue: 0.5)
     } else {
         return Color.gray
     }
