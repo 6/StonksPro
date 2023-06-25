@@ -18,6 +18,30 @@ struct CryptoAssetResponse: Codable {
     let price_change_percentage_7d_in_currency: Float
 }
 
+func formatPercent(percent: Float) -> String {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .percent
+    formatter.minimumIntegerDigits = 1
+    formatter.maximumIntegerDigits = 3
+    formatter.maximumFractionDigits = 2
+    formatter.locale = Locale(identifier: "en_US")
+    var result = formatter.string(from: NSNumber(value: percent / 100)) ?? ""
+    if percent >= 0 {
+        result = "+" + result
+    }
+    return result
+}
+
+func textColorForValue(value: Float) -> Color {
+    if value > 0 {
+        return Color.green
+    } else if (value < 0) {
+        return Color.red
+    } else {
+        return Color.gray
+    }
+}
+
 struct StonksListView: View {
     var userSettings: UserSettingsModel
     var assetClass: AssetClassStruct
@@ -65,10 +89,21 @@ struct StonksListView: View {
                                 Text(item.name)
                                     .font(.title)
                             }
-                            Text("Price: $\(item.current_price)").font(.title3).padding(.top, 1)
+                            Text("$\(item.current_price)").font(.title3).padding(.top, 1)
                         }.padding(0)
                         Spacer()
-                        Text("TODO: graph")
+                        VStack {
+                            Text("1h").font(.callout).bold()
+                            Text(formatPercent(percent: item.price_change_percentage_1h_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_1h_in_currency))
+                        }
+                        VStack {
+                            Text("24h").font(.callout).bold()
+                            Text(formatPercent(percent: item.price_change_percentage_24h_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_24h_in_currency))
+                        }.padding(.leading)
+                        VStack {
+                            Text("7d").font(.callout).bold()
+                            Text(formatPercent(percent: item.price_change_percentage_7d_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_7d_in_currency))
+                        }.padding(.leading)
                     }
                 }
             } else {
