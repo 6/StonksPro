@@ -38,7 +38,7 @@ func formatPercent(percent: Float) -> String {
 func textColorForValue(value: Float) -> Color {
     if value.roundToDecimal(maxDecimalsForPercent) > 0 {
         return Color.green
-    } else if (value.roundToDecimal(2) < 0) {
+    } else if value.roundToDecimal(2) < 0 {
         return Color.red
     } else {
         return Color.gray
@@ -76,7 +76,7 @@ struct StonksListView: View {
             if isLoading {
                ProgressView()
             } else if assetClass.isStocks {
-                Text("Stock details here")
+                Text("Not yet implemented!")
             } else if assetClass.isCrypto {
                 List(cryptoAssets, id: \.id) { item in
                     HStack {

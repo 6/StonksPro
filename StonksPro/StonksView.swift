@@ -13,7 +13,7 @@ struct StonksView: View {
     var userSettings: UserSettingsModel
 
     private let assetClasses = AssetClassStruct.listAll
-    @State private var selectedAssetClass: AssetClassStruct? = AssetClassStruct.getDefault
+    @State private var selectedAssetClass: AssetClassStruct? = AssetClassStruct.crypto
 
     var body: some View {
         NavigationSplitView {

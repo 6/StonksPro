@@ -19,14 +19,11 @@ var optionsAssetClass = AssetClassStruct(title: "Options")
 extension AssetClassStruct {
 
     static var listAll: [AssetClassStruct] {
-        [stocksAssetClass,
+        [
          cryptoAssetClass,
+         stocksAssetClass,
          optionsAssetClass
         ]
-    }
-
-    static var getDefault: AssetClassStruct {
-        return stocksAssetClass
     }
 
     static var stocks: AssetClassStruct {
