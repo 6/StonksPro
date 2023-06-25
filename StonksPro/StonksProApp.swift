@@ -25,8 +25,5 @@ struct StonksProApp: App {
                     }
             }
         }
-        WindowGroup(id:"ImmersiveChart") {
-                ImmersiveView()
-        }
     }
 }

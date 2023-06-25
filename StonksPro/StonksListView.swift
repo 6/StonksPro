@@ -7,17 +7,6 @@
 
 import SwiftUI
 
-// Coingecko response:
-struct CryptoAssetResponse: Codable {
-    let id: String // "bitcoin"
-    let name: String // "Bitcoin"
-    let image: String // "http://..."
-    let current_price: Float // 30607.40261055006
-    let price_change_percentage_1h_in_currency: Float // 0.08790266294799756
-    let price_change_percentage_24h_in_currency: Float
-    let price_change_percentage_7d_in_currency: Float
-}
-
 let maxDecimalsForPercent = 2
 
 func formatPercent(percent: Float) -> String {
@@ -50,15 +39,7 @@ struct StonksListView: View {
     var assetClass: AssetClassStruct
 
     @State var isLoading: Bool = true
-    @State var cryptoAssets: [CryptoAssetResponse] = []
-
-    @State var showImmersiveChart = false
-
-//    @Environment(\.openImmersiveSpace) var openImmersiveSpace
-//    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
-
-        @Environment(\.openWindow) var openWindow
-        @Environment(\.dismissWindow) var dismissWindow
+    @State var cryptoAssets: [CoinGeckoAssetResponse] = []
 
     func fetchCryptoAssets() async {
         isLoading = true
@@ -70,7 +51,7 @@ struct StonksListView: View {
 
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            let decodedResponse = try JSONDecoder().decode([CryptoAssetResponse].self, from: data)
+            let decodedResponse = try JSONDecoder().decode([CoinGeckoAssetResponse].self, from: data)
             cryptoAssets = decodedResponse
             print("Successfully fetched crypto", Date())
             isLoading = false
@@ -87,7 +68,7 @@ struct StonksListView: View {
                 Text("Not yet implemented!")
             } else if assetClass.isCrypto {
                 List(cryptoAssets, id: \.id) { item in
-                    Button(action: { self.showImmersiveChart = !showImmersiveChart }) {
+                    NavigationLink(value: item.id) {
                         HStack {
                             VStack(alignment: .leading) {
                                 HStack {
@@ -114,10 +95,15 @@ struct StonksListView: View {
                             VStack {
                                 Text("7d").font(.callout).bold()
                                 Text(formatPercent(percent: item.price_change_percentage_7d_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_7d_in_currency))
-                            }.padding(.leading)
+                            }.padding(.leading).padding(.trailing)
                         }
-                    }.foregroundColor(.white)
+                    }
+                }.navigationDestination(for: String.self) { cryptoId in
+                    if let cryptoAsset = cryptoAssets.first(where: {$0.id == cryptoId}) {
+                        CryptoDetailsView(cryptoAsset: cryptoAsset)
+                    }
                 }
+                
 
             } else {
                 Text("Not yet implemented!")
@@ -129,14 +115,6 @@ struct StonksListView: View {
         .task(id: assetClass.id) {
             if assetClass.isCrypto {
                 await fetchCryptoAssets()
-            }
-        }.onChange(of: showImmersiveChart) { _, newValue in
-            Task {
-                if newValue {
-                    await openWindow(id: "ImmersiveChart")
-                } else {
-                    await dismissWindow(id: "ImmersiveChart")
-                }
             }
         }
     }
