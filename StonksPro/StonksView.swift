@@ -15,6 +15,8 @@ struct StonksView: View {
 
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+    
+    var userSettings: UserSettingsModel
 
     var body: some View {
         NavigationSplitView {
@@ -28,6 +30,7 @@ struct StonksView: View {
                     .padding(.bottom, 50)
 
                 Text("Hello, world!")
+                Text(userSettings.polygonApiKey)
 
                 Toggle("Show ImmersiveSpace", isOn: $showImmersiveSpace)
                     .toggleStyle(.button)
@@ -48,6 +51,23 @@ struct StonksView: View {
     }
 }
 
-#Preview {
-    StonksView()
+//#Preview {
+//    StonksView()
+//}
+
+struct Stonks_Previews: PreviewProvider {
+    // A View that simply wraps the real view we're working on
+    // Its only purpose is to hold state
+    struct StonksPreviewContainer: View {
+        @State var previewUserSettings: UserSettingsModel = UserSettingsModel()
+
+        var body: some View {
+            StonksView(userSettings: previewUserSettings)
+        }
+    }
+    
+    // Now, use that view wrapper here and we can mutate bindings
+    static var previews: some View {
+        StonksPreviewContainer()
+    }
 }

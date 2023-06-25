@@ -9,14 +9,16 @@ import SwiftUI
 
 @main
 struct StonksProApp: App {
+    @Bindable var userSettings: UserSettingsModel = UserSettingsModel()
+
     var body: some Scene {
         WindowGroup {
             TabView {
-                StonksView()
+                StonksView(userSettings: userSettings)
                     .tabItem {
                         Label("Stonks", systemImage: "chart.line.uptrend.xyaxis")
                     }
-                SettingsView()
+                SettingsView(userSettings: userSettings)
                     .tabItem {
                         Label("Settings", systemImage: "gear")
                     }
