@@ -11,7 +11,16 @@ import SwiftUI
 struct StonksProApp: App {
     var body: some Scene {
         WindowGroup {
-            StonksView()
+            TabView {
+                StonksView()
+                    .tabItem {
+                        Label("Stonks", systemImage: "chart.line.uptrend.xyaxis")
+                    }
+                SettingsView()
+                    .tabItem {
+                        Label("Settings", systemImage: "gear")
+                    }
+            }
         }
 
         ImmersiveSpace(id: "ImmersiveSpace") {
