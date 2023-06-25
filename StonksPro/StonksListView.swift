@@ -39,7 +39,7 @@ struct StonksListView: View {
             let decodedResponse = try JSONDecoder().decode([CryptoAssetResponse].self, from: data)
             cryptoAssets = decodedResponse;
             print("Successfully fetched crypto", Date())
-            
+            isLoading = false
         } catch {
             print("Unable to fetch crypto quote: ",error)
         }
@@ -52,11 +52,17 @@ struct StonksListView: View {
             } else if assetClass.isStocks {
                 Text("Stock details here")
             } else if assetClass.isCrypto {
+                Text("isEmpty: \(String(cryptoAssets.isEmpty)) isLoading \(String(isLoading))")
                 List(cryptoAssets, id: \.id) { item in
                     HStack {
                         VStack(alignment: .leading) {
                             HStack {
-                                AsyncImage(url: URL(string: item.image), scale: 10)
+                                AsyncImage(url: URL(string: item.image)){ image in
+                                    image.resizable()
+                                } placeholder: {
+                                    ProgressView()
+                                }.frame(width: 25, height: 25)
+                            
                                 Text(item.name)
                                     .font(.title)
                             }
@@ -73,12 +79,9 @@ struct StonksListView: View {
         }
         .navigationTitle(assetClass.title)
         .padding()
-        .onAppear() {
-            Task {
-                if assetClass.isCrypto {
-                    await fetchCryptoAssets()
-                }
-                isLoading = false
+        .task(id: assetClass.id) {
+            if assetClass.isCrypto {
+                await fetchCryptoAssets()
             }
         }
     }
