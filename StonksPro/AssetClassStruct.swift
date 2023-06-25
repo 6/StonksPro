@@ -28,4 +28,17 @@ extension AssetClassStruct {
     static var getDefault: AssetClassStruct {
         return stocksAssetClass
     }
+
+    // TODO: better way?
+    var isStocks: Bool {
+        return self.id == stocksAssetClass.id
+    }
+
+    var isCrypto: Bool {
+        return self.id == cryptoAssetClass.id
+    }
+
+    var isOptions: Bool {
+        return self.id == optionsAssetClass.id
+    }
 }

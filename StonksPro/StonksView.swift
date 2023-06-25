@@ -10,12 +10,6 @@ import RealityKit
 import RealityKitContent
 
 struct StonksView: View {
-
-    @State var showImmersiveSpace = false
-
-    @Environment(\.openImmersiveSpace) var openImmersiveSpace
-    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
-
     var userSettings: UserSettingsModel
 
     private let assetClasses = AssetClassStruct.listAll
@@ -30,27 +24,8 @@ struct StonksView: View {
             }
             .navigationSplitViewColumnWidth(min: 270, ideal: 280, max: 300)
         } detail: {
-            VStack {
-                Model3D(named: "Scene", bundle: realityKitContentBundle)
-                    .padding(.bottom, 50)
-
-                Text("Hello, world!")
-                Text(userSettings.polygonApiKey)
-
-                Toggle("Show ImmersiveSpace", isOn: $showImmersiveSpace)
-                    .toggleStyle(.button)
-                    .padding(.top, 50)
-            }
-            .navigationTitle(selectedAssetClass?.title ?? "")
-            .padding()
-        }
-        .onChange(of: showImmersiveSpace) { _, newValue in
-            Task {
-                if newValue {
-                    await openImmersiveSpace(id: "ImmersiveSpace")
-                } else {
-                    await dismissImmersiveSpace()
-                }
+            if let selectedAssetClass {
+                StonksListView(userSettings: userSettings, assetClass: selectedAssetClass)
             }
         }
     }
