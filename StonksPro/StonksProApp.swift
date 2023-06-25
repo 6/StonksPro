@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct StonksProApp: App {
     @Bindable var userSettings: UserSettingsModel = UserSettingsModel()
+    @State private var selectedImmersionStyle: ImmersionStyle = .mixed
 
     var body: some Scene {
         WindowGroup {
@@ -25,8 +26,8 @@ struct StonksProApp: App {
             }
         }
 
-        ImmersiveSpace(id: "ImmersiveSpace") {
+        ImmersiveSpace(id: "ImmersiveChart") {
             ImmersiveView()
-        }
+        }.immersionStyle(selection: $selectedImmersionStyle, in: .mixed)
     }
 }

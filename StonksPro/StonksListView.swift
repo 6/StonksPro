@@ -52,6 +52,11 @@ struct StonksListView: View {
     @State var isLoading: Bool = true
     @State var cryptoAssets: [CryptoAssetResponse] = []
 
+    @State var showImmersiveChart = false
+
+    @Environment(\.openImmersiveSpace) var openImmersiveSpace
+    @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
+
     func fetchCryptoAssets() async {
         isLoading = true
 
@@ -79,35 +84,38 @@ struct StonksListView: View {
                 Text("Not yet implemented!")
             } else if assetClass.isCrypto {
                 List(cryptoAssets, id: \.id) { item in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            HStack {
-                                AsyncImage(url: URL(string: item.image)) { image in
-                                    image.resizable()
-                                } placeholder: {
-                                    ProgressView()
-                                }.frame(width: 25, height: 25)
-
-                                Text(item.name)
-                                    .font(.title)
+                    Button(action: { self.showImmersiveChart = !showImmersiveChart }) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    AsyncImage(url: URL(string: item.image)) { image in
+                                        image.resizable()
+                                    } placeholder: {
+                                        ProgressView()
+                                    }.frame(width: 25, height: 25)
+                                    
+                                    Text(item.name)
+                                        .font(.title)
+                                }
+                                Text("$\(item.current_price)").font(.title3).padding(.top, 1)
+                            }.padding(0)
+                            Spacer()
+                            VStack {
+                                Text("1h").font(.callout).bold()
+                                Text(formatPercent(percent: item.price_change_percentage_1h_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_1h_in_currency))
                             }
-                            Text("$\(item.current_price)").font(.title3).padding(.top, 1)
-                        }.padding(0)
-                        Spacer()
-                        VStack {
-                            Text("1h").font(.callout).bold()
-                            Text(formatPercent(percent: item.price_change_percentage_1h_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_1h_in_currency))
+                            VStack {
+                                Text("24h").font(.callout).bold()
+                                Text(formatPercent(percent: item.price_change_percentage_24h_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_24h_in_currency))
+                            }.padding(.leading)
+                            VStack {
+                                Text("7d").font(.callout).bold()
+                                Text(formatPercent(percent: item.price_change_percentage_7d_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_7d_in_currency))
+                            }.padding(.leading)
                         }
-                        VStack {
-                            Text("24h").font(.callout).bold()
-                            Text(formatPercent(percent: item.price_change_percentage_24h_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_24h_in_currency))
-                        }.padding(.leading)
-                        VStack {
-                            Text("7d").font(.callout).bold()
-                            Text(formatPercent(percent: item.price_change_percentage_7d_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_7d_in_currency))
-                        }.padding(.leading)
-                    }
+                    }.foregroundColor(.white)
                 }
+
             } else {
                 Text("Not yet implemented!")
             }
@@ -118,6 +126,14 @@ struct StonksListView: View {
         .task(id: assetClass.id) {
             if assetClass.isCrypto {
                 await fetchCryptoAssets()
+            }
+        }.onChange(of: showImmersiveChart) { _, newValue in
+            Task {
+                if newValue {
+                    await openImmersiveSpace(id: "ImmersiveChart")
+                } else {
+                    await dismissImmersiveSpace()
+                }
             }
         }
     }
