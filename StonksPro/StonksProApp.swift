@@ -11,7 +11,7 @@ import SwiftUI
 struct StonksProApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StonksView()
         }
 
         ImmersiveSpace(id: "ImmersiveSpace") {

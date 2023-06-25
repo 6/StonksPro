@@ -9,7 +9,7 @@ import SwiftUI
 import RealityKit
 import RealityKitContent
 
-struct ContentView: View {
+struct StonksView: View {
 
     @State var showImmersiveSpace = false
 
@@ -49,5 +49,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    StonksView()
 }
