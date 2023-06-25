@@ -25,10 +25,10 @@ struct StonksView: View {
     var body: some View {
         NavigationSplitView {
             List(assetClasses, selection: $selectedAssetClass) { assetClass in
-                            NavigationLink(value: assetClass) {
-                                Text(assetClass.title)
-                            }
-                        }
+                NavigationLink(value: assetClass) {
+                    Text(assetClass.title)
+                }
+            }
             .navigationSplitViewColumnWidth(min: 270, ideal: 280, max: 300)
         } detail: {
             VStack {
