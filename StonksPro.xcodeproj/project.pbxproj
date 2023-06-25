@@ -17,6 +17,9 @@
 		D05F5C6D2A4879CD005A8F92 /* UserSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F5C6C2A4879CD005A8F92 /* UserSettingsModel.swift */; };
 		D05F5C6F2A487A91005A8F92 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F5C6E2A487A91005A8F92 /* SettingsView.swift */; };
 		D05F5C712A488938005A8F92 /* AssetClassStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F5C702A488938005A8F92 /* AssetClassStruct.swift */; };
+		D05F5C732A489077005A8F92 /* StonksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F5C722A489077005A8F92 /* StonksListView.swift */; };
+		DAE3DBCD6E999FA0EBC25B04 /* Pods_StonksProTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A2D9AB5A9E635BB9584FC6 /* Pods_StonksProTests.framework */; };
+		E1C42E454F52F47CB9344751 /* Pods_StonksPro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47A215226CECFDB10E4FD63D /* Pods_StonksPro.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +33,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		47A215226CECFDB10E4FD63D /* Pods_StonksPro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StonksPro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5392CD5E8D30CB890AEF450B /* Pods-StonksPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StonksPro.debug.xcconfig"; path = "Target Support Files/Pods-StonksPro/Pods-StonksPro.debug.xcconfig"; sourceTree = "<group>"; };
+		566AAEDB0455BC0F4CA3BAB0 /* Pods-StonksProTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StonksProTests.debug.xcconfig"; path = "Target Support Files/Pods-StonksProTests/Pods-StonksProTests.debug.xcconfig"; sourceTree = "<group>"; };
+		71D4484E3F30962B9A8FB9DD /* Pods-StonksProTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StonksProTests.release.xcconfig"; path = "Target Support Files/Pods-StonksProTests/Pods-StonksProTests.release.xcconfig"; sourceTree = "<group>"; };
+		87A2D9AB5A9E635BB9584FC6 /* Pods_StonksProTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StonksProTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B85D4A3F9A326535BBB80685 /* Pods-StonksPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StonksPro.release.xcconfig"; path = "Target Support Files/Pods-StonksPro/Pods-StonksPro.release.xcconfig"; sourceTree = "<group>"; };
 		D05F5C482A487751005A8F92 /* StonksPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StonksPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D05F5C4C2A487751005A8F92 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
 		D05F5C4F2A487751005A8F92 /* StonksProApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StonksProApp.swift; sourceTree = "<group>"; };
@@ -42,6 +51,7 @@
 		D05F5C6C2A4879CD005A8F92 /* UserSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsModel.swift; sourceTree = "<group>"; };
 		D05F5C6E2A487A91005A8F92 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D05F5C702A488938005A8F92 /* AssetClassStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetClassStruct.swift; sourceTree = "<group>"; };
+		D05F5C722A489077005A8F92 /* StonksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StonksListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D05F5C4E2A487751005A8F92 /* RealityKitContent in Frameworks */,
+				E1C42E454F52F47CB9344751 /* Pods_StonksPro.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,12 +68,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAE3DBCD6E999FA0EBC25B04 /* Pods_StonksProTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B4E41B9F9B857A7CF63937A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				47A215226CECFDB10E4FD63D /* Pods_StonksPro.framework */,
+				87A2D9AB5A9E635BB9584FC6 /* Pods_StonksProTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B8A383E4FB889A6DD4D5E64C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5392CD5E8D30CB890AEF450B /* Pods-StonksPro.debug.xcconfig */,
+				B85D4A3F9A326535BBB80685 /* Pods-StonksPro.release.xcconfig */,
+				566AAEDB0455BC0F4CA3BAB0 /* Pods-StonksProTests.debug.xcconfig */,
+				71D4484E3F30962B9A8FB9DD /* Pods-StonksProTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D05F5C3F2A487751005A8F92 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +103,8 @@
 				D05F5C4B2A487751005A8F92 /* Packages */,
 				D05F5C612A487752005A8F92 /* StonksProTests */,
 				D05F5C492A487751005A8F92 /* Products */,
+				B8A383E4FB889A6DD4D5E64C /* Pods */,
+				B4E41B9F9B857A7CF63937A2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +128,7 @@
 				D05F5C6C2A4879CD005A8F92 /* UserSettingsModel.swift */,
 				D05F5C6E2A487A91005A8F92 /* SettingsView.swift */,
 				D05F5C702A488938005A8F92 /* AssetClassStruct.swift */,
+				D05F5C722A489077005A8F92 /* StonksListView.swift */,
 			);
 			path = StonksPro;
 			sourceTree = "<group>";
@@ -128,6 +164,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D05F5C662A487752005A8F92 /* Build configuration list for PBXNativeTarget "StonksPro" */;
 			buildPhases = (
+				3559E9FBF66CB65D9E04DF74 /* [CP] Check Pods Manifest.lock */,
 				D05F5C442A487751005A8F92 /* Sources */,
 				D05F5C452A487751005A8F92 /* Frameworks */,
 				D05F5C462A487751005A8F92 /* Resources */,
@@ -148,6 +185,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D05F5C692A487752005A8F92 /* Build configuration list for PBXNativeTarget "StonksProTests" */;
 			buildPhases = (
+				DE28ED9E6B9B6ECE78D5C290 /* [CP] Check Pods Manifest.lock */,
 				D05F5C5A2A487752005A8F92 /* Sources */,
 				D05F5C5B2A487752005A8F92 /* Frameworks */,
 				D05F5C5C2A487752005A8F92 /* Resources */,
@@ -219,6 +257,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3559E9FBF66CB65D9E04DF74 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StonksPro-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE28ED9E6B9B6ECE78D5C290 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-StonksProTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D05F5C442A487751005A8F92 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -229,6 +314,7 @@
 				D05F5C522A487751005A8F92 /* StonksView.swift in Sources */,
 				D05F5C502A487751005A8F92 /* StonksProApp.swift in Sources */,
 				D05F5C542A487751005A8F92 /* ImmersiveView.swift in Sources */,
+				D05F5C732A489077005A8F92 /* StonksListView.swift in Sources */,
 				D05F5C6D2A4879CD005A8F92 /* UserSettingsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,6 +459,7 @@
 		};
 		D05F5C672A487752005A8F92 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5392CD5E8D30CB890AEF450B /* Pods-StonksPro.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -398,6 +485,7 @@
 		};
 		D05F5C682A487752005A8F92 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B85D4A3F9A326535BBB80685 /* Pods-StonksPro.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -423,6 +511,7 @@
 		};
 		D05F5C6A2A487752005A8F92 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 566AAEDB0455BC0F4CA3BAB0 /* Pods-StonksProTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -443,6 +532,7 @@
 		};
 		D05F5C6B2A487752005A8F92 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71D4484E3F30962B9A8FB9DD /* Pods-StonksProTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
