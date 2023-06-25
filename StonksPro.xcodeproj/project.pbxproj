@@ -18,6 +18,7 @@
 		D05F5C6F2A487A91005A8F92 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F5C6E2A487A91005A8F92 /* SettingsView.swift */; };
 		D05F5C712A488938005A8F92 /* AssetClassStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F5C702A488938005A8F92 /* AssetClassStruct.swift */; };
 		D0EC96082A489AD1006D9661 /* StonksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC96072A489AD1006D9661 /* StonksListView.swift */; };
+		D0EC960C2A48D9D9006D9661 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC960B2A48D9D9006D9661 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		D05F5C6E2A487A91005A8F92 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		D05F5C702A488938005A8F92 /* AssetClassStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetClassStruct.swift; sourceTree = "<group>"; };
 		D0EC96072A489AD1006D9661 /* StonksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StonksListView.swift; sourceTree = "<group>"; };
+		D0EC960B2A48D9D9006D9661 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				D05F5C6E2A487A91005A8F92 /* SettingsView.swift */,
 				D05F5C702A488938005A8F92 /* AssetClassStruct.swift */,
 				D0EC96072A489AD1006D9661 /* StonksListView.swift */,
+				D0EC960B2A48D9D9006D9661 /* Extensions.swift */,
 			);
 			path = StonksPro;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				D05F5C6F2A487A91005A8F92 /* SettingsView.swift in Sources */,
 				D05F5C712A488938005A8F92 /* AssetClassStruct.swift in Sources */,
 				D05F5C522A487751005A8F92 /* StonksView.swift in Sources */,
+				D0EC960C2A48D9D9006D9661 /* Extensions.swift in Sources */,
 				D05F5C502A487751005A8F92 /* StonksProApp.swift in Sources */,
 				D05F5C542A487751005A8F92 /* ImmersiveView.swift in Sources */,
 				D0EC96082A489AD1006D9661 /* StonksListView.swift in Sources */,

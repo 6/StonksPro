@@ -18,25 +18,27 @@ struct CryptoAssetResponse: Codable {
     let price_change_percentage_7d_in_currency: Float
 }
 
+let maxDecimalsForPercent = 2
+
 func formatPercent(percent: Float) -> String {
     let formatter = NumberFormatter()
     formatter.numberStyle = .percent
     formatter.minimumIntegerDigits = 1
     formatter.maximumIntegerDigits = 3
-    formatter.minimumFractionDigits = 2
-    formatter.maximumFractionDigits = 2
+    formatter.minimumFractionDigits = maxDecimalsForPercent
+    formatter.maximumFractionDigits = maxDecimalsForPercent
     formatter.locale = Locale(identifier: "en_US")
     var result = formatter.string(from: NSNumber(value: percent / 100)) ?? ""
-    if percent >= 0.0049 {
+    if percent.roundToDecimal(maxDecimalsForPercent) >= 0 {
         result = "+" + result
     }
     return result
 }
 
 func textColorForValue(value: Float) -> Color {
-    if value > 0.0049 {
+    if value.roundToDecimal(maxDecimalsForPercent) > 0 {
         return Color.green
-    } else if (value < -0.0049) {
+    } else if (value.roundToDecimal(2) < 0) {
         return Color.red
     } else {
         return Color.gray
