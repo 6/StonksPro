@@ -22,10 +22,13 @@ struct StonksListView: View {
     var userSettings: UserSettingsModel
     var assetClass: AssetClassStruct
     
+    @State var isLoading: Bool = true
     @State var cryptoAssets: [CryptoAssetResponse] = []
 
     
     func fetchCryptoAssets() async {
+        isLoading = true
+        
         guard let url = URL(string: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=market_cap_desc&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en&precision=full") else {
             print("URL invalid")
             return
@@ -35,7 +38,7 @@ struct StonksListView: View {
             let (data, _) = try await URLSession.shared.data(from: url)
             let decodedResponse = try JSONDecoder().decode([CryptoAssetResponse].self, from: data)
             cryptoAssets = decodedResponse;
-            print("Successfully fetched crypto:", decodedResponse)
+            print("Successfully fetched crypto", Date())
             
         } catch {
             print("Unable to fetch crypto quote: ",error)
@@ -44,18 +47,24 @@ struct StonksListView: View {
 
     var body: some View {
         VStack {
-            if assetClass.isStocks {
+            if isLoading {
+               ProgressView()
+            } else if assetClass.isStocks {
                 Text("Stock details here")
             } else if assetClass.isCrypto {
                 List(cryptoAssets, id: \.id) { item in
-                    VStack(alignment: .leading) {
-                        HStack {
-                            AsyncImage(url: URL(string: item.image), scale: 10)
-                            Text(item.name)
-                                .font(.title)
-                        }
-                        Text("Price: $\(item.current_price)").font(.title3).padding(.top, 1)
-                    }.padding(0)
+                    HStack {
+                        VStack(alignment: .leading) {
+                            HStack {
+                                AsyncImage(url: URL(string: item.image), scale: 10)
+                                Text(item.name)
+                                    .font(.title)
+                            }
+                            Text("Price: $\(item.current_price)").font(.title3).padding(.top, 1)
+                        }.padding(0)
+                        Spacer()
+                        Text("TODO: graph")
+                    }
                 }
             } else {
                 Text("Not yet implemented!")
@@ -69,6 +78,7 @@ struct StonksListView: View {
                 if assetClass.isCrypto {
                     await fetchCryptoAssets()
                 }
+                isLoading = false
             }
         }
     }
