@@ -21,9 +21,15 @@ struct StonksView: View {
     var body: some View {
         NavigationSplitView {
             List {
-                Text("Item")
+                Button("Stocks") {}.padding()
+                    .frame(width: 220)
+                    .background(.regularMaterial, in: .rect(cornerRadius: 12))
+                    .hoverEffect()
+        
+                Button("Crypto"){}.padding(.leading, 15).contrast(0.5).frame(width: 205)
+                Button("Options"){}.padding(.leading, 15).padding(.top, 10).contrast(0.5).frame(width: 205)
             }
-            .navigationTitle("Sidebar")
+            .navigationSplitViewColumnWidth(min: 270, ideal: 280, max: 300)
         } detail: {
             VStack {
                 Model3D(named: "Scene", bundle: realityKitContentBundle)
