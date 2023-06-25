@@ -2,7 +2,7 @@
 
 Apple Vision Pro example app, built with [SwiftUI](https://developer.apple.com/xcode/swiftui/) + [visionOS SDK](https://developer.apple.com/documentation/visionos/).
 
-It uses [CoinGecko](https://www.coingecko.com/en/api) for crypto data and ~[Polygon.io](https://polygon.io/) for stock + options data~ (coming soon).
+It uses [CoinGecko](https://www.coingecko.com/en/api) free API for crypto data ~and [Polygon.io](https://polygon.io/) for stock + options data~ (coming soon).
 
 Setup:
 
