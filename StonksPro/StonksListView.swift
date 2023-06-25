@@ -23,19 +23,20 @@ func formatPercent(percent: Float) -> String {
     formatter.numberStyle = .percent
     formatter.minimumIntegerDigits = 1
     formatter.maximumIntegerDigits = 3
+    formatter.minimumFractionDigits = 2
     formatter.maximumFractionDigits = 2
     formatter.locale = Locale(identifier: "en_US")
     var result = formatter.string(from: NSNumber(value: percent / 100)) ?? ""
-    if percent >= 0 {
+    if percent >= 0.0049 {
         result = "+" + result
     }
     return result
 }
 
 func textColorForValue(value: Float) -> Color {
-    if value > 0 {
+    if value > 0.0049 {
         return Color.green
-    } else if (value < 0) {
+    } else if (value < -0.0049) {
         return Color.red
     } else {
         return Color.gray
@@ -75,7 +76,6 @@ struct StonksListView: View {
             } else if assetClass.isStocks {
                 Text("Stock details here")
             } else if assetClass.isCrypto {
-                Text("isEmpty: \(String(cryptoAssets.isEmpty)) isLoading \(String(isLoading))")
                 List(cryptoAssets, id: \.id) { item in
                     HStack {
                         VStack(alignment: .leading) {
