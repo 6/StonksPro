@@ -7,3 +7,5 @@ Setup:
 ```
 brew bundle
 ```
+
+Obtain a free Polygon.io API key from https://polygon.io/, which is used to fetch stock data (note: free API key is limited to 5 API calls per minute).
