@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @State var isApiKeyVisible: Bool = false
     @Bindable var userSettings: UserSettingsModel
 
     var body: some View {
@@ -15,10 +16,26 @@ struct SettingsView: View {
             VStack(alignment:.leading) {
                 Text("Enter your Polygon.io API Key:")
                     .bold()
-                TextField("API Key", text: $userSettings.polygonApiKey).textFieldStyle(RoundedBorderTextFieldStyle())
-                    .onChange(of: userSettings.polygonApiKey) { oldValue, newValue in
-                        print("Updated auth token:", newValue)
+                HStack{
+                    ZStack {
+                        TextField("API Key", text: $userSettings.polygonApiKey).textFieldStyle(RoundedBorderTextFieldStyle())
+                            .onChange(of: userSettings.polygonApiKey) { oldValue, newValue in
+                                print("Updated auth token:", newValue)
+                            }
+                            .opacity(isApiKeyVisible ? 1 : 0)
+                        
+                        SecureField("API Key",
+                                    text: $userSettings.polygonApiKey)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .opacity(isApiKeyVisible ? 0 : 1)
                     }
+                    Button {
+                                isApiKeyVisible.toggle()
+                            } label: {
+                                Image(systemName: isApiKeyVisible ? "eye.slash.fill" : "eye.fill")
+                            }
+                            .padding(.trailing, 8)
+                }
                 Spacer()
             }
             .navigationTitle("Settings")
