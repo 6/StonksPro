@@ -17,14 +17,14 @@ var cryptoAssetClass = AssetClassStruct(title: "Crypto")
 var optionsAssetClass = AssetClassStruct(title: "Options")
 
 extension AssetClassStruct {
-
+    
     static var listAll: [AssetClassStruct] {
         [stocksAssetClass,
          cryptoAssetClass,
-         optionsAssetClass
+         optionsAssetClass,
         ]
     }
-
+    
     static var getDefault: AssetClassStruct {
         return stocksAssetClass
     }

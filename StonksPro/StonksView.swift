@@ -9,6 +9,7 @@ import SwiftUI
 import RealityKit
 import RealityKitContent
 
+
 struct StonksView: View {
 
     @State var showImmersiveSpace = false
@@ -17,7 +18,7 @@ struct StonksView: View {
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
 
     var userSettings: UserSettingsModel
-
+    
     private let assetClasses = AssetClassStruct.listAll
     @State private var selectedAssetClass: AssetClassStruct? = AssetClassStruct.getDefault
 
@@ -56,9 +57,9 @@ struct StonksView: View {
     }
 }
 
-// #Preview {
+//#Preview {
 //    StonksView()
-// }
+//}
 
 struct Stonks_Previews: PreviewProvider {
     // A View that simply wraps the real view we're working on
@@ -70,7 +71,7 @@ struct Stonks_Previews: PreviewProvider {
             StonksView(userSettings: previewUserSettings)
         }
     }
-
+    
     // Now, use that view wrapper here and we can mutate bindings
     static var previews: some View {
         StonksPreviewContainer()

@@ -13,17 +13,17 @@ struct SettingsView: View {
 
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
+            VStack(alignment:.leading) {
                 Text("Enter your Polygon.io API Key:")
                     .bold()
-                HStack {
+                HStack{
                     ZStack {
                         TextField("API Key", text: $userSettings.polygonApiKey).textFieldStyle(RoundedBorderTextFieldStyle())
-                            .onChange(of: userSettings.polygonApiKey) { _, newValue in
+                            .onChange(of: userSettings.polygonApiKey) { oldValue, newValue in
                                 print("Updated auth token:", newValue)
                             }
                             .opacity(isApiKeyVisible ? 1 : 0)
-
+                        
                         SecureField("API Key",
                                     text: $userSettings.polygonApiKey)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -40,7 +40,7 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
             .padding(.leading, 30).padding(.trailing, 30)
-
+            
         }
     }
 }
@@ -55,7 +55,7 @@ struct SettingsView_Previews: PreviewProvider {
             SettingsView(userSettings: previewUserSettings)
         }
     }
-
+    
     // Now, use that view wrapper here and we can mutate bindings
     static var previews: some View {
         SettingsContainer()
