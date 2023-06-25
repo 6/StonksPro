@@ -22,6 +22,7 @@ struct StonksView: View {
                     Text(assetClass.title)
                 }
             }
+            .navigationTitle("Stonks Pro")
             .navigationSplitViewColumnWidth(min: 270, ideal: 280, max: 300)
         } detail: {
             if let selectedAssetClass {
