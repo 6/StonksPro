@@ -28,15 +28,15 @@ extension AssetClassStruct {
     static var getDefault: AssetClassStruct {
         return stocksAssetClass
     }
-    
+
     static var stocks: AssetClassStruct {
         return stocksAssetClass
     }
-    
+
     static var crypto: AssetClassStruct {
         return cryptoAssetClass
     }
-    
+
     static var options: AssetClassStruct {
         return optionsAssetClass
     }

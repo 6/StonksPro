@@ -21,27 +21,26 @@ struct CryptoAssetResponse: Codable {
 struct StonksListView: View {
     var userSettings: UserSettingsModel
     var assetClass: AssetClassStruct
-    
+
     @State var isLoading: Bool = true
     @State var cryptoAssets: [CryptoAssetResponse] = []
 
-    
     func fetchCryptoAssets() async {
         isLoading = true
-        
+
         guard let url = URL(string: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=market_cap_desc&per_page=10&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en&precision=full") else {
             print("URL invalid")
             return
         }
-        
+
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             let decodedResponse = try JSONDecoder().decode([CryptoAssetResponse].self, from: data)
-            cryptoAssets = decodedResponse;
+            cryptoAssets = decodedResponse
             print("Successfully fetched crypto", Date())
             isLoading = false
         } catch {
-            print("Unable to fetch crypto quote: ",error)
+            print("Unable to fetch crypto quote: ", error)
         }
     }
 
@@ -57,12 +56,12 @@ struct StonksListView: View {
                     HStack {
                         VStack(alignment: .leading) {
                             HStack {
-                                AsyncImage(url: URL(string: item.image)){ image in
+                                AsyncImage(url: URL(string: item.image)) { image in
                                     image.resizable()
                                 } placeholder: {
                                     ProgressView()
                                 }.frame(width: 25, height: 25)
-                            
+
                                 Text(item.name)
                                     .font(.title)
                             }
