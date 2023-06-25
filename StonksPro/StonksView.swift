@@ -9,26 +9,26 @@ import SwiftUI
 import RealityKit
 import RealityKitContent
 
+
 struct StonksView: View {
 
     @State var showImmersiveSpace = false
 
     @Environment(\.openImmersiveSpace) var openImmersiveSpace
     @Environment(\.dismissImmersiveSpace) var dismissImmersiveSpace
-    
+
     var userSettings: UserSettingsModel
+    
+    private let assetClasses = AssetClassStruct.listAll
+    @State private var selectedAssetClass: AssetClassStruct? = AssetClassStruct.getDefault
 
     var body: some View {
         NavigationSplitView {
-            List {
-                Button("Stocks") {}.padding()
-                    .frame(width: 220)
-                    .background(.regularMaterial, in: .rect(cornerRadius: 12))
-                    .hoverEffect()
-        
-                Button("Crypto"){}.padding(.leading, 15).contrast(0.5).frame(width: 205)
-                Button("Options"){}.padding(.leading, 15).padding(.top, 10).contrast(0.5).frame(width: 205)
-            }
+            List(assetClasses, selection: $selectedAssetClass) { assetClass in
+                            NavigationLink(value: assetClass) {
+                                Text(assetClass.title)
+                            }
+                        }
             .navigationSplitViewColumnWidth(min: 270, ideal: 280, max: 300)
         } detail: {
             VStack {
@@ -42,7 +42,7 @@ struct StonksView: View {
                     .toggleStyle(.button)
                     .padding(.top, 50)
             }
-            .navigationTitle("Content")
+            .navigationTitle(selectedAssetClass?.title ?? "")
             .padding()
         }
         .onChange(of: showImmersiveSpace) { _, newValue in
