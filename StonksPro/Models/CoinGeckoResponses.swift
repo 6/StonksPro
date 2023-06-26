@@ -1,5 +1,5 @@
 //
-//  CoinGeckoAssetResponse.swift
+//  CoinGeckoResponses.swift
 //  StonksPro
 //
 //  Created by Peter Graham on 6/25/23.

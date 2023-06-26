@@ -83,7 +83,7 @@ struct StonksListView: View {
                             }
                         }.navigationDestination(for: String.self) { stockTicker in
                             if let stock = stocks.first(where: {$0.ticker == stockTicker}) {
-                                StockDetailsView(stock: stock)
+                                StockDetailsView(userSettings: userSettings, stock: stock)
                             }
                         }
                     }
