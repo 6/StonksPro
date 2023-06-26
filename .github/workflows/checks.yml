@@ -6,7 +6,7 @@ jobs:
   checks:
     runs-on: macos-latest
     steps:
-      - uses: swift-actions/setup-swift@v1
+      - uses: swift-actions/setup-swift@b14bb142103e506799c159838b3dcdb45d9c13e6
         with:
           swift-version: "5.9"
       - name: Print swift version
