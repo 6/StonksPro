@@ -43,20 +43,12 @@ struct StonksListView: View {
 
     func fetchCryptoAssets() async {
         isLoading = true
-
-        guard let url = URL(string: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=market_cap_desc&per_page=50&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d&locale=en&precision=full") else {
-            print("URL invalid")
-            return
-        }
-
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let decodedResponse = try JSONDecoder().decode([CoinGeckoAssetResponse].self, from: data)
-            cryptoAssets = decodedResponse
+            cryptoAssets = try await CoinGeckoApiClient.fetchTopCoins()
             print("Successfully fetched crypto", Date())
             isLoading = false
         } catch {
-            print("Unable to fetch crypto quote: ", error)
+            print("Unable to fetch", error)
         }
     }
 
