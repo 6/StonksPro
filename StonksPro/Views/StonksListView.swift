@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+struct StonksListViewItemPercentageChange: View {
+    @State var timeframe: String
+    @State var percent: Float
+    
+    var body: some View {
+        VStack {
+            Text(timeframe).font(.callout).bold()
+            Text(formatPercent(percent: percent)).foregroundColor(textColorForPercent(percent: percent))
+        }
+    }
+}
+
 struct StonksListView: View {
     var userSettings: UserSettingsModel
     var assetClass: AssetClassStruct
@@ -50,18 +62,9 @@ struct StonksListView: View {
                                     Text(formatDollar(value: item.current_price)).font(.title3).padding(.top, 1)
                                 }.padding(0)
                                 Spacer()
-                                VStack {
-                                    Text("1h").font(.callout).bold()
-                                    Text(formatPercent(percent: item.price_change_percentage_1h_in_currency)).foregroundColor(textColorForPercent(percent: item.price_change_percentage_1h_in_currency))
-                                }
-                                VStack {
-                                    Text("24h").font(.callout).bold()
-                                    Text(formatPercent(percent: item.price_change_percentage_24h_in_currency)).foregroundColor(textColorForPercent(percent: item.price_change_percentage_24h_in_currency))
-                                }.padding(.leading)
-                                VStack {
-                                    Text("7d").font(.callout).bold()
-                                    Text(formatPercent(percent: item.price_change_percentage_7d_in_currency)).foregroundColor(textColorForPercent(percent: item.price_change_percentage_7d_in_currency))
-                                }.padding(.leading).padding(.trailing)
+                                StonksListViewItemPercentageChange(timeframe: "1h", percent: item.price_change_percentage_1h_in_currency)
+                                StonksListViewItemPercentageChange(timeframe: "24h", percent: item.price_change_percentage_24h_in_currency).padding(.leading)
+                                StonksListViewItemPercentageChange(timeframe: "7d", percent: item.price_change_percentage_7d_in_currency).padding(.leading).padding(.trailing)
                             }
                         }
                     }.navigationDestination(for: String.self) { cryptoId in
