@@ -7,15 +7,27 @@
 
 import SwiftUI
 
-struct StonksListViewItemPercentageChange: View {
-    @State var timeframe: String
-    @State var percent: Float
+struct StonksListViewItemDollarChange: View {
+    @State var header: String
+    @State var value: Float?
     
     var body: some View {
         VStack {
-            Text(timeframe).font(.callout).bold()
-            Text(formatPercent(percent: percent)).foregroundColor(textColorForPercent(percent: percent))
-        }
+            Text(header).font(.callout).bold()
+            Text(formatDollar(value: value ?? 0)).foregroundColor(textColorForDollar(value: value ?? 0))
+        }.padding(.trailing)
+    }
+}
+
+struct StonksListViewItemPercentageChange: View {
+    @State var header: String
+    @State var percent: Float?
+    
+    var body: some View {
+        VStack {
+            Text(header).font(.callout).bold()
+            Text(formatPercent(percent: percent ?? 0)).foregroundColor(textColorForPercent(percent: percent ?? 0))
+        }.padding(.trailing)
     }
 }
 
@@ -58,8 +70,17 @@ struct StonksListView: View {
                 } else if assetClass.isStocks {
                     List(stocks, id: \.ticker) { item in
                         NavigationLink(value: item.ticker) {
-                            Text("Stock")
-                            Text(item.ticker)
+                            HStack {
+                                VStack(alignment:.leading) {
+                                    HStack {
+                                        Text(item.ticker).font(.title)
+                                    }
+                                    Text(formatDollar(value: Float(item.price) ?? 0)).font(.title3).padding(.top, 1)
+                                }.padding(0)
+                                Spacer()
+                                StonksListViewItemDollarChange(header: "Change $", value: Float(item.change_amount))
+                                StonksListViewItemPercentageChange(header: "Change %", percent: Float(item.change_percentage.replacingOccurrences(of: "%", with: "")))
+                            }
                         }.navigationDestination(for: String.self) { stockTicker in
                             if let stock = stocks.first(where: {$0.ticker == stockTicker}) {
                                 StockDetailsView(stock: stock)
@@ -84,9 +105,9 @@ struct StonksListView: View {
                                     Text(formatDollar(value: item.current_price)).font(.title3).padding(.top, 1)
                                 }.padding(0)
                                 Spacer()
-                                StonksListViewItemPercentageChange(timeframe: "1h", percent: item.price_change_percentage_1h_in_currency)
-                                StonksListViewItemPercentageChange(timeframe: "24h", percent: item.price_change_percentage_24h_in_currency).padding(.leading)
-                                StonksListViewItemPercentageChange(timeframe: "7d", percent: item.price_change_percentage_7d_in_currency).padding(.leading).padding(.trailing)
+                                StonksListViewItemPercentageChange(header: "1h", percent: item.price_change_percentage_1h_in_currency)
+                                StonksListViewItemPercentageChange(header: "24h", percent: item.price_change_percentage_24h_in_currency)
+                                StonksListViewItemPercentageChange(header: "7d", percent: item.price_change_percentage_7d_in_currency)
                             }
                         }
                     }.navigationDestination(for: String.self) { cryptoId in

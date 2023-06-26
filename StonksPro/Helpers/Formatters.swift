@@ -35,6 +35,16 @@ func textColorForPercent(percent: Float) -> Color {
     }
 }
 
+func textColorForDollar(value: Float) -> Color {
+    if value.roundToDecimal(2) > 0 {
+        return Color.green
+    } else if value.roundToDecimal(2) < 0 {
+        return Color(red: 1.0, green: 0.5, blue: 0.5)
+    } else {
+        return Color.gray
+    }
+}
+
 func formatDollar(value: Float) -> String {
     let formatter = NumberFormatter()
     formatter.numberStyle = .currency
@@ -45,9 +55,9 @@ func formatDollar(value: Float) -> String {
     if value.rounded() == value {
         formatter.minimumFractionDigits = 0
         formatter.maximumFractionDigits = 0
-    } else if value >= 0.99 {
+    } else if abs(value) >= 0.99 {
         formatter.maximumFractionDigits = 2
-    } else if value >= 0.0099 {
+    } else if abs(value) >= 0.0099 {
         formatter.maximumFractionDigits = 4
     } else {
         formatter.maximumFractionDigits = 8
