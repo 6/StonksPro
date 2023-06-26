@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Charts
+import Foundation
 
 struct CryptoDetailsView: View {
     @State var cryptoAsset: CoinGeckoAssetResponse
@@ -27,6 +28,10 @@ struct CryptoDetailsView: View {
         }
         return datapoints
     }
+    
+    private func yAxisLabel(for yValue: Float) -> String {
+        return yValue.formatted(.number.rounded(rule: .toNearestOrAwayFromZero))
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -36,9 +41,10 @@ struct CryptoDetailsView: View {
                     y: .value("Price", datapoint.price)
                 )
             }.chartYAxis {
-                AxisMarks(
-                    format: Decimal.FormatStyle.Currency(code: "USD")
-                )
+                AxisMarks(position: .leading) { value in
+                    AxisGridLine()
+                    AxisValueLabel(yAxisLabel(for: value))
+                }
             }
             Text(String(cryptoAsset.sparkline_in_7d.price[0]))
             HStack {
