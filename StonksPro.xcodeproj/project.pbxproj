@@ -22,6 +22,8 @@
 		D0EC96102A48F904006D9661 /* CoinGeckoAssetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC960F2A48F904006D9661 /* CoinGeckoAssetResponse.swift */; };
 		D0EC96162A49B6A8006D9661 /* CoinGeckoApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC96152A49B6A8006D9661 /* CoinGeckoApiClient.swift */; };
 		D0EC96192A49B9A4006D9661 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC96182A49B9A4006D9661 /* Formatters.swift */; };
+		D0EC961B2A49C8BE006D9661 /* AlphaVantageTopAssetsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC961A2A49C8BE006D9661 /* AlphaVantageTopAssetsResponse.swift */; };
+		D0EC961D2A49C978006D9661 /* AlphaVantageApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC961C2A49C978006D9661 /* AlphaVantageApiClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		D0EC960F2A48F904006D9661 /* CoinGeckoAssetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinGeckoAssetResponse.swift; sourceTree = "<group>"; };
 		D0EC96152A49B6A8006D9661 /* CoinGeckoApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinGeckoApiClient.swift; sourceTree = "<group>"; };
 		D0EC96182A49B9A4006D9661 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
+		D0EC961A2A49C8BE006D9661 /* AlphaVantageTopAssetsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaVantageTopAssetsResponse.swift; sourceTree = "<group>"; };
+		D0EC961C2A49C978006D9661 /* AlphaVantageApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaVantageApiClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,7 @@
 		D0EC96132A49B0DE006D9661 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D0EC961A2A49C8BE006D9661 /* AlphaVantageTopAssetsResponse.swift */,
 				D05F5C702A488938005A8F92 /* AssetClassStruct.swift */,
 				D0EC960F2A48F904006D9661 /* CoinGeckoAssetResponse.swift */,
 				D05F5C6C2A4879CD005A8F92 /* UserSettingsModel.swift */,
@@ -162,6 +167,7 @@
 		D0EC96142A49B698006D9661 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D0EC961C2A49C978006D9661 /* AlphaVantageApiClient.swift */,
 				D0EC96152A49B6A8006D9661 /* CoinGeckoApiClient.swift */,
 				D0EC96182A49B9A4006D9661 /* Formatters.swift */,
 			);
@@ -282,6 +288,8 @@
 				D0EC96082A489AD1006D9661 /* StonksListView.swift in Sources */,
 				D0EC96102A48F904006D9661 /* CoinGeckoAssetResponse.swift in Sources */,
 				D05F5C6D2A4879CD005A8F92 /* UserSettingsModel.swift in Sources */,
+				D0EC961D2A49C978006D9661 /* AlphaVantageApiClient.swift in Sources */,
+				D0EC961B2A49C8BE006D9661 /* AlphaVantageTopAssetsResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

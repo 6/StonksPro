@@ -14,18 +14,18 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                Text("Enter your Polygon.io API Key:")
+                Text("Enter your AlphaVantage API Key:")
                     .bold()
                 HStack {
                     ZStack {
-                        TextField("API Key", text: $userSettings.polygonApiKey).textFieldStyle(RoundedBorderTextFieldStyle())
-                            .onChange(of: userSettings.polygonApiKey) { _, newValue in
-                                print("Updated auth token:", newValue)
+                        TextField("API Key", text: $userSettings.alphaVantageApiKey).textFieldStyle(RoundedBorderTextFieldStyle())
+                            .onChange(of: userSettings.alphaVantageApiKey) { _, newValue in
+                                print("Updated key:", newValue)
                             }
                             .opacity(isApiKeyVisible ? 1 : 0)
 
                         SecureField("API Key",
-                                    text: $userSettings.polygonApiKey)
+                                    text: $userSettings.alphaVantageApiKey)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .opacity(isApiKeyVisible ? 0 : 1)
                     }

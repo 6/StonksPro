@@ -7,7 +7,6 @@
 
 import Foundation
 
-// Coingecko response:
 struct CoinGeckoAssetResponse: Codable {
     let id: String // "bitcoin"
     let name: String // "Bitcoin"

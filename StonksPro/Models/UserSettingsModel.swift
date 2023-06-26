@@ -9,6 +9,6 @@ import SwiftUI
 import Observation
 
 @Observable class UserSettingsModel {
-    var polygonApiKey: String = ""
+    var alphaVantageApiKey: String = ""
     // ...
 }

@@ -25,6 +25,7 @@ struct StonksListView: View {
 
     @State var isLoading: Bool = true
     @State var cryptoAssets: [CoinGeckoAssetResponse] = []
+    @State var stocks: [AlphaVantageTopAsset] = []
 
     func fetchCryptoAssets() async {
         isLoading = true
@@ -33,7 +34,20 @@ struct StonksListView: View {
             print("Successfully fetched crypto", Date())
             isLoading = false
         } catch {
-            print("Unable to fetch", error)
+            print("Unable to fetch crypto", error)
+        }
+    }
+    
+    func fetchStocks() async {
+        isLoading = true
+        print("Attempting to fetch stocks...")
+        do {
+            let response = try await AlphaVantageApiClient.fetchTopMovers(apiKey: "demo")
+            print("Successfully fetched stocks", Date(), response)
+            stocks = response.most_actively_traded
+            isLoading = false
+        } catch {
+            print("Unable to fetch stocks", error)
         }
     }
 
@@ -43,7 +57,10 @@ struct StonksListView: View {
                 if isLoading {
                     ProgressView()
                 } else if assetClass.isStocks {
-                    Text("Not yet implemented!")
+                    List(stocks, id: \.ticker) { item in
+                        Text("Stock")
+                        Text(item.ticker)
+                    }
                 } else if assetClass.isCrypto {
                     List(cryptoAssets, id: \.id) { item in
                         NavigationLink(value: item.id) {
@@ -82,6 +99,8 @@ struct StonksListView: View {
             .task(id: assetClass.id) {
                 if assetClass.isCrypto {
                     await fetchCryptoAssets()
+                } else if assetClass.isStocks {
+                    await fetchStocks()
                 }
             }
         }
@@ -91,7 +110,7 @@ struct StonksListView: View {
 #Preview {
     VStack {
         let previewUserSettings: UserSettingsModel = UserSettingsModel()
-        let previewAssetClass: AssetClassStruct = AssetClassStruct.crypto
+        let previewAssetClass: AssetClassStruct = AssetClassStruct.stocks
         StonksListView(userSettings: previewUserSettings, assetClass: previewAssetClass)
     }
 }
