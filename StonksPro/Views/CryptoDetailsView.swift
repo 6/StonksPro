@@ -71,25 +71,25 @@ struct CryptoDetailsView: View {
                     HStack {
                         Text("Market cap")
                         Spacer()
-                        Text("$\(cryptoAsset.market_cap)")
+                        Text(formatDollar(value: cryptoAsset.market_cap))
                     }
                     Divider()
                     HStack {
                         Text("24h Volume")
                         Spacer()
-                        Text("$\(cryptoAsset.total_volume)")
+                        Text(formatDollar(value: cryptoAsset.total_volume))
                     }
                     Divider()
                     HStack {
                         Text("24h High")
                         Spacer()
-                        Text("$\(cryptoAsset.high_24h)")
+                        Text(formatDollar(value: cryptoAsset.high_24h))
                     }
                     Divider()
                     HStack {
                         Text("24h Low")
                         Spacer()
-                        Text("$\(cryptoAsset.low_24h)")
+                        Text(formatDollar(value:  cryptoAsset.low_24h))
                     }
                 }.padding(.leading, 50).padding(.trailing, 50).padding(.top, 40).padding(.bottom, 40)
             }.background(.thickMaterial).cornerRadius(15)
