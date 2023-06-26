@@ -35,65 +35,67 @@ struct CryptoDetailsView: View {
     }
 
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView(.vertical) {
-                VStack(alignment: .leading) {
-                    VStack {
-                        Chart(getNormalizedSparklineData()) { datapoint in
-                            LineMark(
-                                x: .value("Date", datapoint.date),
-                                y: .value("Price", datapoint.price)
-                            ).interpolationMethod(.catmullRom)
-                                .foregroundStyle(Color.green)
-                                .lineStyle(StrokeStyle(lineWidth: 3))
-                            AreaMark(
-                                x: .value("Date", datapoint.date),
-                                yStart: .value("Price", datapoint.price),
-                                yEnd: .value("minValue", getYAxisDomain().lowerBound)
-                            ).interpolationMethod(.catmullRom)
-                                .foregroundStyle(
-                                    .linearGradient(
-                                        colors: [Color.green.opacity(0.3), .clear],
-                                        startPoint: .top,
-                                        endPoint: .bottom
-                                    )
+        List {
+                VStack {
+                    Chart(getNormalizedSparklineData()) { datapoint in
+                        LineMark(
+                            x: .value("Date", datapoint.date),
+                            y: .value("Price", datapoint.price)
+                        ).interpolationMethod(.catmullRom)
+                            .foregroundStyle(Color.green)
+                            .lineStyle(StrokeStyle(lineWidth: 3))
+                        AreaMark(
+                            x: .value("Date", datapoint.date),
+                            yStart: .value("Price", datapoint.price),
+                            yEnd: .value("minValue", getYAxisDomain().lowerBound)
+                        ).interpolationMethod(.catmullRom)
+                            .foregroundStyle(
+                                .linearGradient(
+                                    colors: [Color.green.opacity(0.3), .clear],
+                                    startPoint: .top,
+                                    endPoint: .bottom
                                 )
-                        }.chartYAxis {
-                            AxisMarks(
-                                format: Decimal.FormatStyle.Currency(code: "USD")
                             )
-                        }.frame(minHeight: 260).padding(50)
-                            .chartYScale(domain: getYAxisDomain())
+                    }.chartYAxis {
+                        AxisMarks(
+                            format: Decimal.FormatStyle.Currency(code: "USD")
+                        )
+                    }.frame(minHeight: 260).padding(50)
+                        .chartYScale(domain: getYAxisDomain())
 
-                    }.background(.thickMaterial).cornerRadius(15)
-                    Spacer().frame(minHeight: 50)
-                    List {
-                        HStack {
-                            Text("Market cap")
-                            Spacer()
-                            Text("$\(cryptoAsset.market_cap)")
-                        }
-                        HStack {
-                            Text("24h Volume")
-                            Spacer()
-                            Text("$\(cryptoAsset.total_volume)")
-                        }
-                        HStack {
-                            Text("24h High")
-                            Spacer()
-                            Text("$\(cryptoAsset.high_24h)")
-                        }
-                        HStack {
-                            Text("24h Low")
-                            Spacer()
-                            Text("$\(cryptoAsset.low_24h)")
-                        }
-                    }.frame(minHeight: 500)
-                }
-            }.navigationTitle(cryptoAsset.name)
-                .padding(.leading, 30).padding(.trailing, 30)
-                .frame(minHeight: geometry.size.height)
-        }
+                }.background(.thickMaterial).cornerRadius(15)
+                
+            VStack {
+                VStack(alignment: .leading) {
+                    Text("Stats").font(.title2).padding(.bottom, 20)
+                    HStack {
+                        Text("Market cap")
+                        Spacer()
+                        Text("$\(cryptoAsset.market_cap)")
+                    }
+                    Divider()
+                    HStack {
+                        Text("24h Volume")
+                        Spacer()
+                        Text("$\(cryptoAsset.total_volume)")
+                    }
+                    Divider()
+                    HStack {
+                        Text("24h High")
+                        Spacer()
+                        Text("$\(cryptoAsset.high_24h)")
+                    }
+                    Divider()
+                    HStack {
+                        Text("24h Low")
+                        Spacer()
+                        Text("$\(cryptoAsset.low_24h)")
+                    }
+                }.padding(.leading, 50).padding(.trailing, 50).padding(.top, 40).padding(.bottom, 40)
+            }.background(.thinMaterial).cornerRadius(15)
+                
+        }.navigationTitle(cryptoAsset.name)
+            .listStyle(.plain)
     }
 }
 
