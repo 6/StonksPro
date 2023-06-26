@@ -91,16 +91,11 @@
 		D05F5C4A2A487751005A8F92 /* StonksPro */ = {
 			isa = PBXGroup;
 			children = (
-				D05F5C4F2A487751005A8F92 /* StonksProApp.swift */,
-				D05F5C512A487751005A8F92 /* StonksView.swift */,
 				D05F5C552A487752005A8F92 /* Assets.xcassets */,
+				D05F5C4F2A487751005A8F92 /* StonksProApp.swift */,
+				D0EC96132A49B0DE006D9661 /* Models */,
+				D0EC96122A49B099006D9661 /* Views */,
 				D05F5C572A487752005A8F92 /* Preview Content */,
-				D05F5C6C2A4879CD005A8F92 /* UserSettingsModel.swift */,
-				D05F5C6E2A487A91005A8F92 /* SettingsView.swift */,
-				D05F5C702A488938005A8F92 /* AssetClassStruct.swift */,
-				D0EC96072A489AD1006D9661 /* StonksListView.swift */,
-				D0EC960D2A48F6D4006D9661 /* CryptoDetailsView.swift */,
-				D0EC960F2A48F904006D9661 /* CoinGeckoAssetResponse.swift */,
 				D0EC96112A49AC36006D9661 /* Extensions */,
 			);
 			path = StonksPro;
@@ -136,6 +131,27 @@
 				D0EC960B2A48D9D9006D9661 /* NumericExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D0EC96122A49B099006D9661 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D0EC960D2A48F6D4006D9661 /* CryptoDetailsView.swift */,
+				D05F5C6E2A487A91005A8F92 /* SettingsView.swift */,
+				D0EC96072A489AD1006D9661 /* StonksListView.swift */,
+				D05F5C512A487751005A8F92 /* StonksView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D0EC96132A49B0DE006D9661 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D05F5C702A488938005A8F92 /* AssetClassStruct.swift */,
+				D0EC960F2A48F904006D9661 /* CoinGeckoAssetResponse.swift */,
+				D05F5C6C2A4879CD005A8F92 /* UserSettingsModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
