@@ -6,13 +6,44 @@
 //
 
 import SwiftUI
+import Charts
 
 struct CryptoDetailsView: View {
     @State var cryptoAsset: CoinGeckoAssetResponse
+    
+    struct SparklineDatapoint: Identifiable {
+        let id = UUID()
+        let price: Float
+        let date: Date
+    }
+    
+    func getNormalizedSparklineData() -> [SparklineDatapoint] {
+        let calendar = Calendar.current
+        let startDate = calendar.date(byAdding: .weekOfYear, value: -1, to: Date()) ?? Date()
+        var datapoints: [SparklineDatapoint] = []
+        for (index, price) in cryptoAsset.sparkline_in_7d.price.enumerated() {
+            let date =  calendar.date(byAdding: .hour, value: index, to: startDate) ?? Date()
+            datapoints.append(SparklineDatapoint(price: price, date: date))
+        }
+        return datapoints
+    }
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        Text(cryptoAsset.name)
+        VStack(alignment: .leading) {
+            Chart(getNormalizedSparklineData()) { datapoint in
+                AreaMark(
+                    x: .value("Date", datapoint.date),
+                    y: .value("Price", datapoint.price)
+                )
+            }
+            Text(String(cryptoAsset.sparkline_in_7d.price[0]))
+            HStack {
+                Text("TODO")
+            }
+            Spacer()
+        }
+        .navigationTitle(cryptoAsset.name)
+        .padding(.leading, 30).padding(.trailing, 30)
     }
 }
 
