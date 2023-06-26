@@ -35,6 +35,10 @@ struct CryptoDetailsView: View {
                     x: .value("Date", datapoint.date),
                     y: .value("Price", datapoint.price)
                 )
+            }.chartYAxis {
+                AxisMarks(
+                    format: Decimal.FormatStyle.Currency(code: "USD")
+                )
             }
             Text(String(cryptoAsset.sparkline_in_7d.price[0]))
             HStack {
