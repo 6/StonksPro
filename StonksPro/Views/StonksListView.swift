@@ -37,7 +37,8 @@ struct StonksListView: View {
 
     @State var isLoading: Bool = true
     @State var cryptoAssets: [CoinGeckoAssetResponse] = []
-    @State var stocks: [AlphaVantageTopAsset] = []
+    @State var mostActiveStocks: [AlphaVantageTopAsset] = []
+    @State var topGainersStocks: [AlphaVantageTopAsset] = []
 
     func fetchCryptoAssets() async {
         isLoading = true
@@ -55,7 +56,8 @@ struct StonksListView: View {
         do {
             let response = try await AlphaVantageApiClient.fetchTopMovers(apiKey: userSettings.alphaVantageApiKey, useMockData: true)
             print("Successfully fetched stocks", Date())
-            stocks = response.most_actively_traded
+            mostActiveStocks = response.most_actively_traded
+            topGainersStocks = response.top_gainers
             isLoading = false
         } catch {
             print("Unable to fetch stocks", error)
@@ -68,7 +70,7 @@ struct StonksListView: View {
                 if isLoading {
                     ProgressView()
                 } else if assetClass.isStocks {
-                    List(stocks, id: \.ticker) { item in
+                    List(mostActiveStocks, id: \.ticker) { item in
                         NavigationLink(value: item.ticker) {
                             HStack {
                                 VStack(alignment:.leading) {
@@ -82,7 +84,7 @@ struct StonksListView: View {
                                 StonksListViewItemPercentageChange(header: "Change %", percent: Float(item.change_percentage.replacingOccurrences(of: "%", with: "")))
                             }
                         }.navigationDestination(for: String.self) { stockTicker in
-                            if let stock = stocks.first(where: {$0.ticker == stockTicker}) {
+                            if let stock = mostActiveStocks.first(where: {$0.ticker == stockTicker}) {
                                 StockDetailsView(stock: stock)
                             }
                         }
