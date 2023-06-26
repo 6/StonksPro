@@ -21,6 +21,7 @@
 		D0EC960E2A48F6D4006D9661 /* CryptoDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC960D2A48F6D4006D9661 /* CryptoDetailsView.swift */; };
 		D0EC96102A48F904006D9661 /* CoinGeckoAssetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC960F2A48F904006D9661 /* CoinGeckoAssetResponse.swift */; };
 		D0EC96162A49B6A8006D9661 /* CoinGeckoApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC96152A49B6A8006D9661 /* CoinGeckoApiClient.swift */; };
+		D0EC96192A49B9A4006D9661 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC96182A49B9A4006D9661 /* Formatters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		D0EC960D2A48F6D4006D9661 /* CryptoDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsView.swift; sourceTree = "<group>"; };
 		D0EC960F2A48F904006D9661 /* CoinGeckoAssetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinGeckoAssetResponse.swift; sourceTree = "<group>"; };
 		D0EC96152A49B6A8006D9661 /* CoinGeckoApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinGeckoApiClient.swift; sourceTree = "<group>"; };
+		D0EC96182A49B9A4006D9661 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +97,7 @@
 			children = (
 				D05F5C552A487752005A8F92 /* Assets.xcassets */,
 				D05F5C4F2A487751005A8F92 /* StonksProApp.swift */,
-				D0EC96142A49B698006D9661 /* Clients */,
+				D0EC96142A49B698006D9661 /* Helpers */,
 				D0EC96132A49B0DE006D9661 /* Models */,
 				D0EC96122A49B099006D9661 /* Views */,
 				D05F5C572A487752005A8F92 /* Preview Content */,
@@ -157,12 +159,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		D0EC96142A49B698006D9661 /* Clients */ = {
+		D0EC96142A49B698006D9661 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				D0EC96152A49B6A8006D9661 /* CoinGeckoApiClient.swift */,
+				D0EC96182A49B9A4006D9661 /* Formatters.swift */,
 			);
-			path = Clients;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +273,7 @@
 			files = (
 				D0EC960E2A48F6D4006D9661 /* CryptoDetailsView.swift in Sources */,
 				D05F5C6F2A487A91005A8F92 /* SettingsView.swift in Sources */,
+				D0EC96192A49B9A4006D9661 /* Formatters.swift in Sources */,
 				D05F5C712A488938005A8F92 /* AssetClassStruct.swift in Sources */,
 				D05F5C522A487751005A8F92 /* StonksView.swift in Sources */,
 				D0EC960C2A48D9D9006D9661 /* NumericExtensions.swift in Sources */,
