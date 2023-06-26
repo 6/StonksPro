@@ -31,14 +31,21 @@ struct CryptoDetailsView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Chart(getNormalizedSparklineData()) { datapoint in
+                LineMark(
+                    x: .value("Date", datapoint.date),
+                    y: .value("Price", datapoint.price)
+                ).interpolationMethod(.catmullRom)
+                    .foregroundStyle(Color.green)
+                    .lineStyle(StrokeStyle(lineWidth: 3))
                 AreaMark(
                     x: .value("Date", datapoint.date),
                     y: .value("Price", datapoint.price)
-                ).foregroundStyle(
+                ).interpolationMethod(.catmullRom)
+                .foregroundStyle(
                     .linearGradient(
-                        colors: [.blue, .red],
-                        startPoint: .bottom,
-                        endPoint: .top
+                        colors: [Color.green.opacity(0.35), .clear],
+                        startPoint: .top,
+                        endPoint: .bottom
                     )
                 )
             }.chartYAxis {
