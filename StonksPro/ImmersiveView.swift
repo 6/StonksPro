@@ -17,13 +17,11 @@ let cheeseburgerCost: [Food] = [
     .init(name: "Cheeseburger", price: 1.10, year: 2020)
 ]
 
-
 struct Food: Identifiable {
     let name: String
     let price: Double
     let date: Date
     let id = UUID()
-
 
     init(name: String, price: Double, year: Int) {
         self.name = name

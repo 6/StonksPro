@@ -78,7 +78,7 @@ struct StonksListView: View {
                                         } placeholder: {
                                             ProgressView()
                                         }.frame(width: 25, height: 25)
-                                        
+
                                         Text(item.name)
                                             .font(.title)
                                         Text(item.id)
@@ -105,7 +105,7 @@ struct StonksListView: View {
                             CryptoDetailsView(cryptoAsset: cryptoAsset)
                         }
                     }
-                    
+
                 } else {
                     Text("Not yet implemented!")
                 }
