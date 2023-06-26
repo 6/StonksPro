@@ -81,7 +81,6 @@ struct StonksListView: View {
 
                                         Text(item.name)
                                             .font(.title)
-                                        Text(item.id)
                                     }
                                     Text("$\(item.current_price)").font(.title3).padding(.top, 1)
                                 }.padding(0)
@@ -109,7 +108,6 @@ struct StonksListView: View {
                 } else {
                     Text("Not yet implemented!")
                 }
-                Text(userSettings.polygonApiKey)
             }
             .navigationTitle(assetClass.title)
             .padding()
