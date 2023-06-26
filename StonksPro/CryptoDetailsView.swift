@@ -27,40 +27,72 @@ struct CryptoDetailsView: View {
         }
         return datapoints
     }
+    
+    func getYAxisDomain() -> ClosedRange<Float> {
+        let minValue = cryptoAsset.sparkline_in_7d.price.min() ?? 0
+        let maxValue = cryptoAsset.sparkline_in_7d.price.max() ?? 1
+        return minValue...maxValue
+    }
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Chart(getNormalizedSparklineData()) { datapoint in
-                LineMark(
-                    x: .value("Date", datapoint.date),
-                    y: .value("Price", datapoint.price)
-                ).interpolationMethod(.catmullRom)
-                    .foregroundStyle(Color.green)
-                    .lineStyle(StrokeStyle(lineWidth: 3))
-                AreaMark(
-                    x: .value("Date", datapoint.date),
-                    y: .value("Price", datapoint.price)
-                ).interpolationMethod(.catmullRom)
-                .foregroundStyle(
-                    .linearGradient(
-                        colors: [Color.green.opacity(0.35), .clear],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
-            }.chartYAxis {
-                AxisMarks(
-                    format: Decimal.FormatStyle.Currency(code: "USD")
-                )
-            }
-            Text(String(cryptoAsset.sparkline_in_7d.price[0]))
-            HStack {
-                Text("TODO")
-            }
-            Spacer()
+        GeometryReader { geometry in
+            ScrollView(.vertical) {
+                VStack(alignment: .leading) {
+                    VStack {
+                        Chart(getNormalizedSparklineData()) { datapoint in
+                            LineMark(
+                                x: .value("Date", datapoint.date),
+                                y: .value("Price", datapoint.price)
+                            ).interpolationMethod(.catmullRom)
+                                .foregroundStyle(Color.green)
+                                .lineStyle(StrokeStyle(lineWidth: 3))
+                            AreaMark(
+                                x: .value("Date", datapoint.date),
+                                y: .value("Price", datapoint.price)
+                            ).interpolationMethod(.catmullRom)
+                                .foregroundStyle(
+                                    .linearGradient(
+                                        colors: [Color.green.opacity(0.15), .clear],
+                                        startPoint: .top,
+                                        endPoint: .bottom
+                                    )
+                                )
+                        }.chartYAxis {
+                            AxisMarks(
+                                format: Decimal.FormatStyle.Currency(code: "USD")
+                            )
+                        }.frame(minHeight: 260).padding(50)
+                            .chartYScale(domain: getYAxisDomain())
+
+                    }.background(.thickMaterial).cornerRadius(15)
+                    Spacer().frame(minHeight: 50)
+                    List {
+                        HStack {
+                            Text("Market cap")
+                            Spacer()
+                            Text("$\(cryptoAsset.market_cap)")
+                        }
+                        HStack {
+                            Text("24h Volume")
+                            Spacer()
+                            Text("$\(cryptoAsset.total_volume)")
+                        }
+                        HStack {
+                            Text("24h High")
+                            Spacer()
+                            Text("$\(cryptoAsset.high_24h)")
+                        }
+                        HStack {
+                            Text("24h Low")
+                            Spacer()
+                            Text("$\(cryptoAsset.low_24h)")
+                        }
+                    }.frame(minHeight: 500)
+                }
+            }.navigationTitle(cryptoAsset.name)
+                .padding(.leading, 30).padding(.trailing, 30)
+                .frame(minHeight: geometry.size.height)
         }
-        .navigationTitle(cryptoAsset.name)
-        .padding(.leading, 30).padding(.trailing, 30)
     }
 }
 
