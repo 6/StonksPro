@@ -48,11 +48,12 @@ struct CryptoDetailsView: View {
                                 .lineStyle(StrokeStyle(lineWidth: 3))
                             AreaMark(
                                 x: .value("Date", datapoint.date),
-                                y: .value("Price", datapoint.price)
+                                yStart: .value("Price", datapoint.price),
+                                yEnd: .value("minValue", getYAxisDomain().lowerBound)
                             ).interpolationMethod(.catmullRom)
                                 .foregroundStyle(
                                     .linearGradient(
-                                        colors: [Color.green.opacity(0.15), .clear],
+                                        colors: [Color.green.opacity(0.3), .clear],
                                         startPoint: .top,
                                         endPoint: .bottom
                                     )
