@@ -27,7 +27,7 @@ struct CryptoDetailsView: View {
         }
         return datapoints
     }
-    
+
     func getYAxisDomain() -> ClosedRange<Float> {
         let minValue = cryptoAsset.sparkline_in_7d.price.min() ?? 0
         let maxValue = cryptoAsset.sparkline_in_7d.price.max() ?? 1
@@ -64,7 +64,7 @@ struct CryptoDetailsView: View {
                         .chartYScale(domain: getYAxisDomain())
 
                 }.background(.thickMaterial).cornerRadius(15)
-                
+
             VStack {
                 VStack(alignment: .leading) {
                     Text("Stats").font(.title2).padding(.bottom, 20)
@@ -93,7 +93,7 @@ struct CryptoDetailsView: View {
                     }
                 }.padding(.leading, 50).padding(.trailing, 50).padding(.top, 40).padding(.bottom, 40)
             }.background(.thinMaterial).cornerRadius(15)
-                
+
         }.navigationTitle(cryptoAsset.name)
             .listStyle(.plain)
     }
