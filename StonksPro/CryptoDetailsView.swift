@@ -34,6 +34,12 @@ struct CryptoDetailsView: View {
                 AreaMark(
                     x: .value("Date", datapoint.date),
                     y: .value("Price", datapoint.price)
+                ).foregroundStyle(
+                    .linearGradient(
+                        colors: [.blue, .red],
+                        startPoint: .bottom,
+                        endPoint: .top
+                    )
                 )
             }.chartYAxis {
                 AxisMarks(
