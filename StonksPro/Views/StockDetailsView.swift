@@ -14,7 +14,7 @@ struct StockDetailsView: View {
     @State var company: AlphaVantageCompanyOverview = AlphaVantageCompanyOverview.placeholder()
     @State var timeseries: [AlphaVantageTimeseriesValue] = []
     @State var isLoading: Bool = true
-    
+
     func fetchDetails() async {
         isLoading = true
         do {
@@ -26,7 +26,7 @@ struct StockDetailsView: View {
             print("Unable to fetch stock details", error)
         }
     }
-    
+
     struct ChartDatapoint: Identifiable {
         let id = UUID()
         let price: Float
@@ -84,7 +84,7 @@ struct StockDetailsView: View {
                         .chartYScale(domain: getYAxisDomain())
 
                 }.background(.thickMaterial).cornerRadius(15)
-                
+
                 VStack {
                     VStack(alignment: .leading) {
                         Text("Details").font(.title2).padding(.bottom, 20)

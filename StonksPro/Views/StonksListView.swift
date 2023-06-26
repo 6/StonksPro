@@ -10,7 +10,7 @@ import SwiftUI
 struct StonksListViewItemDollarChange: View {
     @State var header: String
     @State var value: Float?
-    
+
     var body: some View {
         VStack {
             Text(header).font(.callout).bold()
@@ -22,7 +22,7 @@ struct StonksListViewItemDollarChange: View {
 struct StonksListViewItemPercentageChange: View {
     @State var header: String
     @State var percent: Float?
-    
+
     var body: some View {
         VStack {
             Text(header).font(.callout).bold()
@@ -49,7 +49,7 @@ struct StonksListView: View {
             print("Unable to fetch crypto", error)
         }
     }
-    
+
     func fetchStocks() async {
         isLoading = true
         do {
@@ -71,7 +71,7 @@ struct StonksListView: View {
                     List(stocks, id: \.ticker) { item in
                         NavigationLink(value: item.ticker) {
                             HStack {
-                                VStack(alignment:.leading) {
+                                VStack(alignment: .leading) {
                                     HStack {
                                         Text(item.ticker).font(.title)
                                     }

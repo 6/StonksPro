@@ -25,11 +25,11 @@ struct AlphaVantageTopAsset: Codable {
 struct AlphaVantageCompanyOverview: Codable {
     let Symbol: String // "IBM"
     let AssetType: String // Common Stock
-    let Name: String //International Business Machines
+    let Name: String // International Business Machines
     let Description: String
     let Exchange: String // NYSE
     let MarketCapitalization: String // "117528257000"
-    
+
     static func placeholder () -> AlphaVantageCompanyOverview {
         self.init(Symbol: "", AssetType: "", Name: "", Description: "", Exchange: "", MarketCapitalization: "")
     }
@@ -44,10 +44,10 @@ struct AlphaVantageTimeseriesValue: Codable {
     var volume: String
 }
 
-//struct AlphaVantageTimeSeriesIntradayResponse: Codable {
+// struct AlphaVantageTimeSeriesIntradayResponse: Codable {
 //    var TimeSeriesKey: String
 //
 //    private enum CodingKeys : String, CodingKey {
 //        case TimeSeriesKey = "Time Series (60min)"
 //    }
-//}
+// }

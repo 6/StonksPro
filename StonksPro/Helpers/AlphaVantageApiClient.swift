@@ -24,7 +24,7 @@ class AlphaVantageApiClient {
         guard let url = URL(string: "https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=\(apiKey)") else {
             throw AlphaVantageError("URL invalid")
         }
-        if (useMockData) {
+        if useMockData {
             let decodedResponse = try JSONDecoder().decode(AlphaVantageTopAssetsResponse.self, from: Data(mockAlphaVantageTopMoversResponse.utf8))
             return decodedResponse
         } else {
@@ -33,12 +33,12 @@ class AlphaVantageApiClient {
             return decodedResponse
         }
     }
-    
+
     static func fetchCompanyOverview(apiKey: String, symbol: String, useMockData: Bool) async throws -> AlphaVantageCompanyOverview {
         guard let url = URL(string: "https://www.alphavantage.co/query?function=OVERVIEW&symbol=\(symbol)&apikey=\(apiKey)") else {
             throw AlphaVantageError("URL invalid")
         }
-        if (useMockData) {
+        if useMockData {
             let decodedResponse = try JSONDecoder().decode(AlphaVantageCompanyOverview.self, from: Data(mockCompanyOverviewResponse.utf8))
             return decodedResponse
         } else {
@@ -47,7 +47,7 @@ class AlphaVantageApiClient {
             return decodedResponse
         }
     }
-    
+
     static func fetchTimeseries(apiKey: String, symbol: String, useMockData: Bool) async throws -> [AlphaVantageTimeseriesValue] {
         // Fetch as CSV since JSON is highly complicated to decode using Swift (dynamic timestamp keys)
         guard let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(symbol)&apikey=\(apiKey)&interval=60min&outputsize=compact&datatype=csv") else {

@@ -89,7 +89,7 @@ struct CryptoDetailsView: View {
                     HStack {
                         Text("24h Low")
                         Spacer()
-                        Text(formatDollar(value:  cryptoAsset.low_24h))
+                        Text(formatDollar(value: cryptoAsset.low_24h))
                     }
                 }.padding(.leading, 50).padding(.trailing, 50).padding(.top, 40).padding(.bottom, 40)
             }.background(.thickMaterial).cornerRadius(15)
