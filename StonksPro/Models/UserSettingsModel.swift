@@ -9,6 +9,6 @@ import SwiftUI
 import Observation
 
 @Observable class UserSettingsModel {
-    var alphaVantageApiKey: String = ""
+    var alphaVantageApiKey: String = "demo"
     // ...
 }

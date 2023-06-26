@@ -40,10 +40,9 @@ struct StonksListView: View {
     
     func fetchStocks() async {
         isLoading = true
-        print("Attempting to fetch stocks...")
         do {
-            let response = try await AlphaVantageApiClient.fetchTopMovers(apiKey: "demo")
-            print("Successfully fetched stocks", Date(), response)
+            let response = try await AlphaVantageApiClient.fetchTopMovers(apiKey: userSettings.alphaVantageApiKey, useMockData: true)
+            print("Successfully fetched stocks", Date())
             stocks = response.most_actively_traded
             isLoading = false
         } catch {
