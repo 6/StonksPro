@@ -10,5 +10,5 @@ import Observation
 
 @Observable class UserSettingsModel {
     var alphaVantageApiKey: String = "demo"
-    // ...
+    var useMockStockData: Bool = true
 }

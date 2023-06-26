@@ -14,9 +14,9 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                Text("Enter your AlphaVantage API Key:")
-                    .bold()
+                Text("API Credentials").font(.title2)
                 HStack {
+                    Text("AlphaVantage")
                     ZStack {
                         TextField("API Key", text: $userSettings.alphaVantageApiKey).textFieldStyle(RoundedBorderTextFieldStyle())
                             .onChange(of: userSettings.alphaVantageApiKey) { _, newValue in
@@ -36,6 +36,8 @@ struct SettingsView: View {
                             }
                             .padding(.trailing, 8)
                 }
+                Text("Mock Data").font(.title2).padding(.top, 40)
+                Toggle("Use mock stock data", isOn: $userSettings.useMockStockData)
                 Spacer()
             }
             .navigationTitle("Settings")

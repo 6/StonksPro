@@ -18,8 +18,8 @@ struct StockDetailsView: View {
     func fetchDetails() async {
         isLoading = true
         do {
-            company = try await AlphaVantageApiClient.fetchCompanyOverview(apiKey: userSettings.alphaVantageApiKey, symbol: stock.ticker, useMockData: true)
-            timeseries = try await AlphaVantageApiClient.fetchTimeseries(apiKey: userSettings.alphaVantageApiKey, symbol: stock.ticker, useMockData: true)
+            company = try await AlphaVantageApiClient.fetchCompanyOverview(apiKey: userSettings.alphaVantageApiKey, symbol: stock.ticker, useMockData: userSettings.useMockStockData)
+            timeseries = try await AlphaVantageApiClient.fetchTimeseries(apiKey: userSettings.alphaVantageApiKey, symbol: stock.ticker, useMockData: userSettings.useMockStockData)
             print("Successfully fetched stock details", Date())
             isLoading = false
         } catch {
