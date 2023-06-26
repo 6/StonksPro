@@ -61,60 +61,62 @@ struct StonksListView: View {
     }
 
     var body: some View {
-        VStack {
-            if isLoading {
-               ProgressView()
-            } else if assetClass.isStocks {
-                Text("Not yet implemented!")
-            } else if assetClass.isCrypto {
-                List(cryptoAssets, id: \.id) { item in
-                    NavigationLink(value: item.id) {
-                        HStack {
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    AsyncImage(url: URL(string: item.image)) { image in
-                                        image.resizable()
-                                    } placeholder: {
-                                        ProgressView()
-                                    }.frame(width: 25, height: 25)
-                                    
-                                    Text(item.name)
-                                        .font(.title)
+        NavigationStack {
+            VStack {
+                if isLoading {
+                    ProgressView()
+                } else if assetClass.isStocks {
+                    Text("Not yet implemented!")
+                } else if assetClass.isCrypto {
+                    List(cryptoAssets, id: \.id) { item in
+                        NavigationLink(value: item.id) {
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        AsyncImage(url: URL(string: item.image)) { image in
+                                            image.resizable()
+                                        } placeholder: {
+                                            ProgressView()
+                                        }.frame(width: 25, height: 25)
+                                        
+                                        Text(item.name)
+                                            .font(.title)
+                                        Text(item.id)
+                                    }
+                                    Text("$\(item.current_price)").font(.title3).padding(.top, 1)
+                                }.padding(0)
+                                Spacer()
+                                VStack {
+                                    Text("1h").font(.callout).bold()
+                                    Text(formatPercent(percent: item.price_change_percentage_1h_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_1h_in_currency))
                                 }
-                                Text("$\(item.current_price)").font(.title3).padding(.top, 1)
-                            }.padding(0)
-                            Spacer()
-                            VStack {
-                                Text("1h").font(.callout).bold()
-                                Text(formatPercent(percent: item.price_change_percentage_1h_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_1h_in_currency))
+                                VStack {
+                                    Text("24h").font(.callout).bold()
+                                    Text(formatPercent(percent: item.price_change_percentage_24h_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_24h_in_currency))
+                                }.padding(.leading)
+                                VStack {
+                                    Text("7d").font(.callout).bold()
+                                    Text(formatPercent(percent: item.price_change_percentage_7d_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_7d_in_currency))
+                                }.padding(.leading).padding(.trailing)
                             }
-                            VStack {
-                                Text("24h").font(.callout).bold()
-                                Text(formatPercent(percent: item.price_change_percentage_24h_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_24h_in_currency))
-                            }.padding(.leading)
-                            VStack {
-                                Text("7d").font(.callout).bold()
-                                Text(formatPercent(percent: item.price_change_percentage_7d_in_currency)).foregroundColor(textColorForValue(value: item.price_change_percentage_7d_in_currency))
-                            }.padding(.leading).padding(.trailing)
+                        }
+                    }.navigationDestination(for: String.self) { cryptoId in
+                        if let cryptoAsset = cryptoAssets.first(where: {$0.id == cryptoId}) {
+                            CryptoDetailsView(cryptoAsset: cryptoAsset)
                         }
                     }
-                }.navigationDestination(for: String.self) { cryptoId in
-                    if let cryptoAsset = cryptoAssets.first(where: {$0.id == cryptoId}) {
-                        CryptoDetailsView(cryptoAsset: cryptoAsset)
-                    }
+                    
+                } else {
+                    Text("Not yet implemented!")
                 }
-                
-
-            } else {
-                Text("Not yet implemented!")
+                Text(userSettings.polygonApiKey)
             }
-            Text(userSettings.polygonApiKey)
-        }
-        .navigationTitle(assetClass.title)
-        .padding()
-        .task(id: assetClass.id) {
-            if assetClass.isCrypto {
-                await fetchCryptoAssets()
+            .navigationTitle(assetClass.title)
+            .padding()
+            .task(id: assetClass.id) {
+                if assetClass.isCrypto {
+                    await fetchCryptoAssets()
+                }
             }
         }
     }
@@ -134,8 +136,6 @@ struct StonksList_Previews: PreviewProvider {
 
     // Now, use that view wrapper here and we can mutate bindings
     static var previews: some View {
-        NavigationStack {
-            StonksPreviewContainer()
-        }
+        StonksPreviewContainer()
     }
 }
