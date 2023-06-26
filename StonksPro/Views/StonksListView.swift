@@ -57,8 +57,14 @@ struct StonksListView: View {
                     ProgressView()
                 } else if assetClass.isStocks {
                     List(stocks, id: \.ticker) { item in
-                        Text("Stock")
-                        Text(item.ticker)
+                        NavigationLink(value: item.ticker) {
+                            Text("Stock")
+                            Text(item.ticker)
+                        }.navigationDestination(for: String.self) { stockTicker in
+                            if let stock = stocks.first(where: {$0.ticker == stockTicker}) {
+                                StockDetailsView(stock: stock)
+                            }
+                        }
                     }
                 } else if assetClass.isCrypto {
                     List(cryptoAssets, id: \.id) { item in

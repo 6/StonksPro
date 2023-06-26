@@ -24,6 +24,7 @@
 		D0EC96192A49B9A4006D9661 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC96182A49B9A4006D9661 /* Formatters.swift */; };
 		D0EC961B2A49C8BE006D9661 /* AlphaVantageTopAssetsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC961A2A49C8BE006D9661 /* AlphaVantageTopAssetsResponse.swift */; };
 		D0EC961D2A49C978006D9661 /* AlphaVantageApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC961C2A49C978006D9661 /* AlphaVantageApiClient.swift */; };
+		D0EC961F2A49CF63006D9661 /* StockDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EC961E2A49CF63006D9661 /* StockDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		D0EC96182A49B9A4006D9661 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		D0EC961A2A49C8BE006D9661 /* AlphaVantageTopAssetsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaVantageTopAssetsResponse.swift; sourceTree = "<group>"; };
 		D0EC961C2A49C978006D9661 /* AlphaVantageApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaVantageApiClient.swift; sourceTree = "<group>"; };
+		D0EC961E2A49CF63006D9661 /* StockDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			children = (
 				D0EC960D2A48F6D4006D9661 /* CryptoDetailsView.swift */,
 				D05F5C6E2A487A91005A8F92 /* SettingsView.swift */,
+				D0EC961E2A49CF63006D9661 /* StockDetailsView.swift */,
 				D0EC96072A489AD1006D9661 /* StonksListView.swift */,
 				D05F5C512A487751005A8F92 /* StonksView.swift */,
 			);
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0EC961F2A49CF63006D9661 /* StockDetailsView.swift in Sources */,
 				D0EC960E2A48F6D4006D9661 /* CryptoDetailsView.swift in Sources */,
 				D05F5C6F2A487A91005A8F92 /* SettingsView.swift in Sources */,
 				D0EC96192A49B9A4006D9661 /* Formatters.swift in Sources */,
