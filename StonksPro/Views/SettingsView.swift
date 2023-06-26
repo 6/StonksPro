@@ -45,19 +45,9 @@ struct SettingsView: View {
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-    // A View that simply wraps the real view we're working on
-    // Its only purpose is to hold state
-    struct SettingsContainer: View {
-        @Bindable var previewUserSettings: UserSettingsModel = UserSettingsModel()
-
-        var body: some View {
-            SettingsView(userSettings: previewUserSettings)
-        }
-    }
-
-    // Now, use that view wrapper here and we can mutate bindings
-    static var previews: some View {
-        SettingsContainer()
+#Preview {
+    VStack {
+        let previewUserSettings: UserSettingsModel = UserSettingsModel()
+        SettingsView(userSettings: previewUserSettings)
     }
 }

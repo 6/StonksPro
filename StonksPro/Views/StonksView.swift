@@ -32,23 +32,9 @@ struct StonksView: View {
     }
 }
 
-// #Preview {
-//    StonksView()
-// }
-
-struct Stonks_Previews: PreviewProvider {
-    // A View that simply wraps the real view we're working on
-    // Its only purpose is to hold state
-    struct StonksPreviewContainer: View {
-        @State var previewUserSettings: UserSettingsModel = UserSettingsModel()
-
-        var body: some View {
-            StonksView(userSettings: previewUserSettings)
-        }
-    }
-
-    // Now, use that view wrapper here and we can mutate bindings
-    static var previews: some View {
-        StonksPreviewContainer()
-    }
-}
+ #Preview {
+     VStack {
+         let previewUserSettings: UserSettingsModel = UserSettingsModel()
+         StonksView(userSettings: previewUserSettings)
+     }
+ }
