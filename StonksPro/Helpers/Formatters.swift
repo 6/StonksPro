@@ -28,9 +28,26 @@ func formatPercent(percent: Float) -> String {
 func textColorForPercent(percent: Float) -> Color {
     if percent.roundToDecimal(maxDecimalsForPercent) > 0 {
         return Color.green
-    } else if percent.roundToDecimal(2) < 0 {
+    } else if percent.roundToDecimal(maxDecimalsForPercent) < 0 {
         return Color(red: 1.0, green: 0.5, blue: 0.5)
     } else {
         return Color.gray
     }
+}
+
+func formatDollar(value: Float) -> String {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currency
+    formatter.currencySymbol = "$"
+    formatter.minimumIntegerDigits = 1
+    formatter.minimumFractionDigits = 2
+    formatter.maximumFractionDigits = 8
+    if value >= 0.99 {
+        formatter.maximumFractionDigits = 2
+    } else if value >= 0.0099 {
+        formatter.maximumFractionDigits = 4
+    } else {
+        formatter.maximumFractionDigits = 8
+    }
+    return formatter.string(from: NSNumber(value: value)) ?? ""
 }
