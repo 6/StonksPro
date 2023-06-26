@@ -92,7 +92,7 @@ struct CryptoDetailsView: View {
                         Text("$\(cryptoAsset.low_24h)")
                     }
                 }.padding(.leading, 50).padding(.trailing, 50).padding(.top, 40).padding(.bottom, 40)
-            }.background(.thinMaterial).cornerRadius(15)
+            }.background(.thickMaterial).cornerRadius(15)
 
         }.navigationTitle(cryptoAsset.name)
             .listStyle(.plain)
