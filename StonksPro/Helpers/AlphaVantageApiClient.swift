@@ -50,7 +50,7 @@ class AlphaVantageApiClient {
     
     static func fetchTimeseries(apiKey: String, symbol: String, useMockData: Bool) async throws -> [AlphaVantageTimeseriesValue] {
         // Fetch as CSV since JSON is highly complicated to decode using Swift (dynamic timestamp keys)
-        guard let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(symbol)&apikey=\(apiKey)&outputsize=compact&datatype=csv") else {
+        guard let url = URL(string: "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=\(symbol)&apikey=\(apiKey)&interval=60min&outputsize=compact&datatype=csv") else {
             throw AlphaVantageError("URL invalid")
         }
         var timeseries: [AlphaVantageTimeseriesValue] = []
@@ -60,6 +60,7 @@ class AlphaVantageApiClient {
         } else {
             let (data, _) = try await URLSession.shared.data(from: url)
             response = String(data: data, encoding: .utf8) ?? ""
+            print("Response:", response)
         }
         var rows = response.components(separatedBy: "\n")
         // Remove header "timestamp,open,high,low,close,volume"
